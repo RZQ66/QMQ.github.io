@@ -1,0 +1,81 @@
+brand:
+  title: QVQ
+  subtitle: 睡觉中......
+  avatar: /images/avatar.jpg
+
+hero:
+  title: QVQ’s blog
+  subtitle: Welcome to my world
+  animation_delay: 58
+  overlay:
+    light: 0.34
+    dark: 0.58
+  images:
+    - day: /images/hero/mountain-01.jpg
+      night: /images/hero/mountain-04.jpg
+    - day: /images/hero/mountain-02.jpg
+      night: /images/hero/mountain-04.jpg
+    - day: /images/hero/mountain-03.jpg
+      night: /images/hero/mountain-04.jpg
+    - day: /images/hero/mountain-04.jpg
+
+pages:
+  about:
+    title: 关于我
+    subtitle: 一点关于 QVQ 的碎片。
+    hero:
+      day: /images/hero/mountain-03.jpg
+      night: /images/hero/mountain-04.jpg
+  archives:
+    title: 归档
+    subtitle: 时间线里的技术笔记。
+    hero:
+      day: /images/hero/mountain-01.jpg
+      night: /images/hero/mountain-04.jpg
+  categories:
+    title: 分类
+    subtitle: 按主题整理。
+    hero:
+      day: /images/hero/mountain-02.jpg
+      night: /images/hero/mountain-04.jpg
+  tags:
+    title: 标签
+    subtitle: 关键词索引。
+    hero:
+      day: /images/hero/mountain-03.jpg
+      night: /images/hero/mountain-04.jpg
+  portfolio:
+    title: 作品
+    subtitle: 项目、作品和实验。
+    hero:
+      day: /images/hero/mountain-04.jpg
+  links:
+    title: 友链
+    subtitle: 友情链接。
+    hero:
+      day: /images/hero/mountain-01.jpg
+      night: /images/hero/mountain-04.jpg
+
+default_cover:
+  day: /images/hero/mountain-01.jpg
+  night: /images/hero/mountain-04.jpg
+
+nav:
+  - name: 首页
+    path: /
+  - name: 归档
+    path: /archives/
+  - name: 分类
+    path: /categories/
+  - name: 标签
+    path: /tags/
+  - name: 关于
+    path: /about/
+  - name: 作品
+    path: /portfolio/
+
+social:
+  GitHub: https://github.com/rzq66
+
+light_switch:
+  sound: false

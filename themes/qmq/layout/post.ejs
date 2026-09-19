@@ -1,0 +1,35 @@
+<%
+const fallback = theme.default_cover && theme.default_cover.day ? theme.default_cover.day : '/images/default-cover.png';
+const cover = page.cover || fallback;
+const categories = page.categories ? page.categories.toArray() : [];
+const tags = page.tags ? page.tags.toArray() : [];
+const headings = toc(page.content, { list_number: false, max_depth: 6 });
+const reading = Math.max(1, Math.ceil(strip_html(page.content || '').length / 500));
+%>
+<article class="article-page">
+  <header class="article-hero" style="--page-image: url('<%- url_for(cover) %>')">
+    <div class="article-hero-shade"></div>
+    <div class="article-hero-inner">
+      <h1><%= page.title %></h1>
+      <div class="post-meta">
+        <time datetime="<%= date_xml(page.date) %>"><%= date(page.date, 'YYYY.MM.DD') %></time>
+        <% if (categories.length) { %><span><%= categories.map(cat => cat.name).join(' / ') %></span><% } %>
+        <span><%= reading %> 分钟</span>
+      </div>
+      <% if (tags.length) { %>
+        <div class="tag-row">
+          <% tags.forEach(tag => { %><a href="<%- url_for(tag.path) %>"><%= tag.name %></a><% }) %>
+        </div>
+      <% } %>
+    </div>
+  </header>
+  <div class="article-shell">
+    <div class="article-content content"><%- page.content %></div>
+    <% if (headings) { %>
+      <aside class="toc">
+        <div class="toc-title">目录</div>
+        <%- headings %>
+      </aside>
+    <% } %>
+  </div>
+</article>

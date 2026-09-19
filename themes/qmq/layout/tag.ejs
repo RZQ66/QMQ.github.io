@@ -1,0 +1,14 @@
+<%- partial('_partial/page-hero', { pageKey: 'tags' }) %>
+<section class="term-page">
+  <div class="term-grid">
+    <% if (page.tag) { %>
+      <% page.posts.each(function(post) { %>
+        <a href="<%- url_for(post.path) %>"><%= post.title %><time><%= date(post.date, 'YYYY.MM.DD') %></time></a>
+      <% }) %>
+    <% } else { %>
+      <% site.tags.toArray().forEach(function(tag) { %>
+        <a href="<%- url_for(tag.path) %>"><%= tag.name %><span><%= tag.length %></span></a>
+      <% }) %>
+    <% } %>
+  </div>
+</section>

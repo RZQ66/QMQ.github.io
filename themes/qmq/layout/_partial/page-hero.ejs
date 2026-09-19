@@ -1,0 +1,12 @@
+<%
+const data = (theme.pages && theme.pages[pageKey]) || {};
+const hero = data.hero || theme.default_cover || {};
+const image = hero.day || hero;
+%>
+<header class="page-hero" style="--page-image: url('<%- url_for(image) %>')">
+  <div class="page-hero-shade"></div>
+  <div>
+    <h1><%= page.title || data.title || pageKey %></h1>
+    <p><%= page.description || data.subtitle || '' %></p>
+  </div>
+</header>

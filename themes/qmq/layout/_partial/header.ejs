@@ -1,0 +1,41 @@
+<%
+const nav = theme.nav || [];
+const postCount = site.posts ? site.posts.length : 0;
+const categoryCount = site.categories ? site.categories.length : 0;
+const tagCount = site.tags ? site.tags.length : 0;
+%>
+<header class="site-header" data-header>
+  <% if (is_post()) { %>
+    <a class="menu-button back-icon-button" href="<%- url_for('/') %>" aria-label="返回首页">
+      <span class="back-arrow" aria-hidden="true"></span>
+    </a>
+  <% } else { %>
+    <button class="menu-button" type="button" aria-label="打开菜单" aria-expanded="false" data-menu-button>
+      <span></span><span></span><span></span>
+    </button>
+  <% } %>
+</header>
+
+<button class="side-menu-backdrop" type="button" aria-label="关闭侧边菜单" data-menu-close></button>
+<aside class="mobile-menu" aria-hidden="true" data-mobile-menu>
+  <div class="side-profile">
+    <p class="side-kicker">QVQ’s blog</p>
+    <p class="side-welcome">Welcome to my world</p>
+    <img src="<%- url_for(theme.brand.avatar) %>" alt="<%= config.author %> 的头像" width="104" height="104">
+    <strong>QVQ</strong>
+  </div>
+
+  <div class="side-stats" aria-label="站点概览">
+    <span><b><%= postCount %></b>文章</span>
+    <span><b><%= categoryCount %></b>分类</span>
+    <span><b><%= tagCount %></b>标签</span>
+  </div>
+
+  <button class="side-search" type="button" data-search-open data-menu-close>搜索文章</button>
+
+  <nav class="side-nav" aria-label="站点导航">
+    <% nav.forEach(item => { %>
+      <a href="<%- url_for(item.path) %>" data-menu-close><%= item.name %></a>
+    <% }) %>
+  </nav>
+</aside>

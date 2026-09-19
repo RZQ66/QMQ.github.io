@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rzq66.github.io/QMQ.github.io/sitemap.xml

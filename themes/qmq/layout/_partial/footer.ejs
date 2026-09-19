@@ -1,0 +1,10 @@
+<footer class="site-footer">
+  <div>
+    <strong><%= config.title %></strong>
+    <span>© <%= date(new Date(), 'YYYY') %> <%= config.author %></span>
+  </div>
+  <div class="footer-links">
+    <a href="<%- url_for('/atom.xml') %>">RSS</a>
+    <a href="<%- url_for('/sitemap.xml') %>">Sitemap</a>
+  </div>
+</footer>

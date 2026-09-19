@@ -1,0 +1,14 @@
+<%- partial('_partial/page-hero', { pageKey: 'categories' }) %>
+<section class="term-page">
+  <div class="term-grid">
+    <% if (page.category) { %>
+      <% page.posts.each(function(post) { %>
+        <a href="<%- url_for(post.path) %>"><%= post.title %><time><%= date(post.date, 'YYYY.MM.DD') %></time></a>
+      <% }) %>
+    <% } else { %>
+      <% site.categories.toArray().forEach(function(cat) { %>
+        <a href="<%- url_for(cat.path) %>"><%= cat.name %><span><%= cat.length %></span></a>
+      <% }) %>
+    <% } %>
+  </div>
+</section>

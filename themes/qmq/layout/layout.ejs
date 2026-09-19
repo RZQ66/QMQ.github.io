@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="<%= config.language || 'zh-CN' %>">
+  <%- partial('_partial/head') %>
+  <body class="<%= is_home() ? 'is-home' : '' %> <%= is_post() ? 'is-post' : '' %>">
+    <%- partial('_partial/header') %>
+    <%- partial('_partial/light-switch') %>
+    <main id="main" class="site-main">
+      <%- body %>
+    </main>
+    <%- partial('_partial/search') %>
+    <%- partial('_partial/footer') %>
+    <script src="<%- url_for('/js/qmq.js') %>" defer></script>
+  </body>
+</html>

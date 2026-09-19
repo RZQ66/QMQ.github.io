@@ -1,0 +1,50 @@
+<%
+const root = config.root || '/';
+const heroImages = (theme.hero && theme.hero.images) || [];
+const qmqConfig = {
+  root,
+  heroImages,
+  animationDelay: theme.hero && theme.hero.animation_delay ? theme.hero.animation_delay : 58,
+  sound: Boolean(theme.light_switch && theme.light_switch.sound)
+};
+const pageTitle = page.title ? `${page.title} | ${config.title}` : config.title;
+const description = page.description || config.description || config.subtitle || '';
+const cover = page.cover || (theme.default_cover && theme.default_cover.day) || '';
+%>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f3ec">
+  <meta name="description" content="<%= description %>">
+  <meta property="og:type" content="<%= is_post() ? 'article' : 'website' %>">
+  <meta property="og:title" content="<%= pageTitle %>">
+  <meta property="og:description" content="<%= description %>">
+  <% if (cover) { %><meta property="og:image" content="<%- full_url_for(cover) %>"><% } %>
+  <link rel="canonical" href="<%- full_url_for(page.path || '') %>">
+  <link rel="preload" as="image" href="<%- url_for('/images/hero/mountain-01.jpg') %>">
+  <link rel="stylesheet" href="<%- url_for('/css/qmq.css') %>">
+  <title><%= pageTitle %></title>
+  <script>
+    window.QMQ_CONFIG = <%- JSON.stringify(qmqConfig) %>;
+    (function () {
+      var root = window.QMQ_CONFIG.root || '/';
+      var storedTheme = localStorage.getItem('qmq-theme');
+      var theme = storedTheme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.dataset.theme = theme;
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', theme === 'dark' ? '#111315' : '#f7f3ec');
+      function asset(path) {
+        if (!path) return '';
+        if (/^(https?:)?\/\//.test(path)) return path;
+        return root.replace(/\/$/, '/') + String(path).replace(/^\/+/, '');
+      }
+      var pool = window.QMQ_CONFIG.heroImages || [];
+      if (pool.length) {
+        var index = Math.floor(Math.random() * pool.length);
+        var picked = pool[index] || pool[0];
+        var image = theme === 'dark' && picked.night ? picked.night : picked.day;
+        document.documentElement.dataset.heroIndex = String(index);
+        document.documentElement.style.setProperty('--hero-image', 'url("' + asset(image) + '")');
+      }
+    })();
+  </script>
+</head>

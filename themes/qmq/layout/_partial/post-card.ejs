@@ -1,0 +1,26 @@
+<%
+const fallback = theme.default_cover && theme.default_cover.day ? theme.default_cover.day : '/images/default-cover.png';
+const cover = post.cover || fallback;
+const categories = post.categories ? post.categories.toArray() : [];
+const tags = post.tags ? post.tags.toArray() : [];
+const reading = Math.max(1, Math.ceil(strip_html(post.content || '').length / 500));
+%>
+<article class="post-card reveal <%= index % 2 ? 'is-reversed' : '' %>">
+  <a class="post-card-media" href="<%- url_for(post.path) %>" aria-label="<%= post.title %>">
+    <img src="<%- url_for(cover) %>" alt="<%= post.title %>" loading="<%= index < 2 ? 'eager' : 'lazy' %>">
+  </a>
+  <div class="post-card-copy">
+    <div class="post-meta">
+      <time datetime="<%= date_xml(post.date) %>"><%= date(post.date, 'YYYY.MM.DD') %></time>
+      <% if (categories.length) { %><span><%= categories.map(cat => cat.name).join(' / ') %></span><% } %>
+      <span><%= reading %> 分钟</span>
+    </div>
+    <h3><a href="<%- url_for(post.path) %>"><%= post.title %></a></h3>
+    <% if (tags.length) { %>
+      <div class="tag-row">
+        <% tags.forEach(tag => { %><a href="<%- url_for(tag.path) %>"><%= tag.name %></a><% }) %>
+      </div>
+    <% } %>
+    <p><%= post.description || truncate(strip_html(post.excerpt || post.content), { length: 128 }) %></p>
+  </div>
+</article>

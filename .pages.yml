@@ -1,0 +1,90 @@
+media:
+  - name: covers
+    label: 文章封面
+    input: source/images/posts
+    output: /images/posts
+    extensions: [avif, webp, jpg, jpeg, png]
+    categories: [image]
+    rename: safe
+  - name: content_images
+    label: 正文图片
+    input: source/images/uploads
+    output: /images/uploads
+    extensions: [avif, webp, jpg, jpeg, png, gif]
+    categories: [image]
+    rename: safe
+
+content:
+  - name: posts
+    label: 文章
+    type: collection
+    path: source/_posts
+    filename: "{year}-{month}-{day}-{slug}.md"
+    view:
+      fields: [title, date, categories, tags]
+      primary: title
+      sort: [date, title]
+      search: [title, description, categories, tags]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: date
+        label: 发布时间
+        type: date
+        required: true
+        options:
+          time: true
+          format: yyyy-MM-dd HH:mm:ss
+      - name: cover
+        label: 封面图片
+        type: image
+        required: true
+        options:
+          media: covers
+          rename: safe
+      - name: description
+        label: 摘要
+        type: text
+        required: true
+      - name: categories
+        label: 分类
+        type: string
+        list: true
+      - name: tags
+        label: 标签
+        type: string
+        list: true
+      - name: body
+        label: 正文
+        type: rich-text
+        required: true
+        options:
+          format: markdown
+          media: content_images
+          rename: safe
+          switcher: true
+
+  - name: pages
+    label: 独立页面
+    type: collection
+    path: source
+    filename: "{slug}/index.md"
+    exclude:
+      - _posts/**
+      - images/**
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: layout
+        label: 页面布局
+        type: string
+      - name: body
+        label: 正文
+        type: rich-text
