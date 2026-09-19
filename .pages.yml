@@ -61,9 +61,14 @@ content:
         list: true
       - name: body
         label: 正文
-        type: text
+        type: rich-text
         required: true
-        description: 直接输入普通文字或 Markdown 即可发布
+        description: 可直接输入文字，也可使用工具栏上传正文图片
+        options:
+          format: markdown
+          media: content_images
+          rename: safe
+          switcher: true
 
   - name: pages
     label: 独立页面
@@ -83,5 +88,10 @@ content:
         type: string
       - name: body
         label: 正文
-        type: text
-        description: 直接输入普通文字或 Markdown
+        type: rich-text
+        description: 可直接输入文字，也可使用工具栏上传图片
+        options:
+          format: markdown
+          media: content_images
+          rename: safe
+          switcher: true
