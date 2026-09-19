@@ -7,10 +7,6 @@
 </section>
 
 <section id="posts" class="post-list-section">
-  <div class="section-heading reveal">
-    <p>最新文章</p>
-    <h2>技术笔记</h2>
-  </div>
   <div class="post-list">
     <% page.posts.each(function(post, i) { %>
       <%- partial('_partial/post-card', { post, index: i }) %>
