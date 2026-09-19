@@ -55,6 +55,12 @@ pages:
     hero:
       day: /images/hero/mountain-01.jpg
       night: /images/hero/mountain-04.jpg
+  changelog:
+    title: 更新日志
+    subtitle: 记录这个小世界的每一次变化。
+    hero:
+      day: /images/hero/mountain-02.jpg
+      night: /images/hero/mountain-04.jpg
 
 default_cover:
   day: /images/hero/mountain-01.jpg
@@ -73,6 +79,8 @@ nav:
     path: /about/
   - name: 作品
     path: /portfolio/
+  - name: 更新日志
+    path: /changelog/
 
 social:
   GitHub: https://github.com/rzq66
