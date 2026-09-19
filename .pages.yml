@@ -43,14 +43,14 @@ content:
       - name: cover
         label: 封面图片
         type: image
-        required: true
+        description: 可选；不上传时使用默认封面
         options:
           media: covers
           rename: safe
       - name: description
         label: 摘要
         type: text
-        required: true
+        description: 可选；用于首页文章简介
       - name: categories
         label: 分类
         type: string
@@ -61,13 +61,9 @@ content:
         list: true
       - name: body
         label: 正文
-        type: rich-text
+        type: text
         required: true
-        options:
-          format: markdown
-          media: content_images
-          rename: safe
-          switcher: true
+        description: 直接输入普通文字或 Markdown 即可发布
 
   - name: pages
     label: 独立页面
@@ -87,4 +83,5 @@ content:
         type: string
       - name: body
         label: 正文
-        type: rich-text
+        type: text
+        description: 直接输入普通文字或 Markdown
